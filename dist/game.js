@@ -59,6 +59,8 @@ export function setupGame() {
   let board = emptyBoard(), target = 4, bot = 'worst', humanMark = 1, botMark = 2;
   let active = false, busy = false, session = 0, lastIndex = -1, winners = [];
   const score = { human: 0, bot: 0, draw: 0 };
+  const listeners = new Set();
+  const snapshot = () => ({ board: [...board], target, bot, humanMark, botMark, active, busy, lastIndex, winners: [...winners], score: { ...score }, status: status.textContent });
   const columns = [];
   for (let c = 0; c < COLS; c++) {
     const button = document.createElement('button');
@@ -99,6 +101,7 @@ export function setupGame() {
       columns[c].setAttribute('aria-label', `Column ${c + 1}${landingIndex(board, c) < 0 ? ', full' : ', drop a piece'}. ${contents.length ? contents.join('; ') : 'Empty'}`);
     }
     boardElement.setAttribute('aria-busy', String(busy));
+    for (const listener of listeners) listener(snapshot());
   }
   function finishMove(index) {
     winners = winningLine(board, index, target);
@@ -164,7 +167,11 @@ export function setupGame() {
     session++; active = false; busy = false; board = emptyBoard(); winners = []; lastIndex = -1;
     target = Number($('connect-target').value); bot = document.querySelector('input[name=opponent]:checked').value;
     $('target-description').textContent = target; $('game-title-x').textContent = target;
-    $('bot-note').textContent = bot === 'worst' ? 'A bot that deliberately helps its opponent win. Yes, really.' : 'For its strongest opening, choose Connect 4 and let the bot go first.';
+    $('bot-note').textContent = bot === 'worst'
+      ? 'A bot that deliberately helps its opponent win. Yes, really.'
+      : target === 4 && $('first-player').value === 'bot'
+        ? 'Standard Connect 4, bot first: the setup for its complete first-player strategy.'
+        : 'Timed-search challenge. Choose Connect 4 + Bot first to try its complete first-player strategy.';
     setStatus('Fresh settings. Ready when you are.'); start.disabled = false; start.innerHTML = 'Let’s play <span>↗</span>';
     $('game-caption').textContent = 'No sign-up. No stakes. Maybe a little pride.'; render();
   }
@@ -175,4 +182,10 @@ export function setupGame() {
   });
   window.addEventListener('pagehide', () => engine.destroy());
   render();
+  return {
+    getState: snapshot,
+    playColumn: humanMove,
+    newGame,
+    subscribe(listener) { listeners.add(listener); listener(snapshot()); return () => listeners.delete(listener); },
+  };
 }

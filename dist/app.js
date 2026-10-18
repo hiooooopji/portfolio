@@ -1,4 +1,5 @@
 import { setupGame } from './game.js';
+import { createCalmMusic } from './music.js';
 
 const repositories = [
   ['cartoonize', 'Python'], ['chess-bot', 'Python'], ['discord-app', 'Python'],
@@ -17,13 +18,6 @@ for (const [name, language, description] of repositories) {
   link.append(label, metadata); list.append(link);
 }
 document.getElementById('year').textContent = new Date().getFullYear();
-for (const button of document.querySelectorAll('[data-scroll]')) button.addEventListener('click', () => {
-  const section = document.getElementById(button.dataset.scroll);
-  section.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-  history.replaceState(null, '', `#${button.dataset.scroll}`);
-  const focusTarget = section.querySelector('a, button, input');
-  focusTarget?.focus({ preventScroll: true });
-});
 let toastTimer;
 function toast(message) {
   const element = document.getElementById('toast'); element.textContent = message; element.classList.add('show');
@@ -36,7 +30,7 @@ document.getElementById('lamp-toggle').addEventListener('click', event => {
   toast(dimmed ? 'A little quieter. A little cozier.' : 'The light’s on. Let’s make something.');
 });
 
-let audioContext, rainSource, rainGain, soundOn = false, soundBusy = false;
+let audioContext, calmMusic, suspendTimer, soundOn = false, soundBusy = false;
 document.getElementById('sound-toggle').addEventListener('click', async event => {
   if (soundBusy) return;
   soundBusy = true;
@@ -44,28 +38,108 @@ document.getElementById('sound-toggle').addEventListener('click', async event =>
   try {
     if (!audioContext) {
       audioContext = new AudioContext();
-      const length = audioContext.sampleRate * 4, buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
-      const samples = buffer.getChannelData(0); let previous = 0;
-      for (let i = 0; i < length; i++) { const noise = Math.random() * 2 - 1; previous = (previous + .025 * noise) / 1.025; samples[i] = previous * 4; }
-      rainSource = audioContext.createBufferSource(); rainSource.buffer = buffer; rainSource.loop = true;
-      const filter = audioContext.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 1800;
-      rainGain = audioContext.createGain(); rainGain.gain.value = 0;
-      rainSource.connect(filter).connect(rainGain).connect(audioContext.destination); rainSource.start();
+      calmMusic = createCalmMusic(audioContext);
     }
+    clearTimeout(suspendTimer);
     await audioContext.resume(); soundOn = !soundOn;
-    rainGain.gain.cancelScheduledValues(audioContext.currentTime);
-    rainGain.gain.setTargetAtTime(soundOn ? .22 : 0, audioContext.currentTime, .25);
-    button.setAttribute('aria-pressed', String(soundOn)); button.setAttribute('aria-label', soundOn ? 'Turn off rain sounds' : 'Turn on rain sounds');
-    document.getElementById('sound-label').textContent = soundOn ? 'Rain on' : 'Sound off';
+    if (soundOn) calmMusic.start();
+    else {
+      calmMusic.stop();
+      suspendTimer = setTimeout(() => audioContext.suspend().catch(() => {}), 1300);
+    }
+    button.setAttribute('aria-pressed', String(soundOn)); button.setAttribute('aria-label', soundOn ? 'Pause calm background music' : 'Play calm background music');
+    document.getElementById('sound-label').textContent = soundOn ? 'Music on' : 'Music off';
   } catch { toast('Sound isn’t available in this browser.'); }
   finally { soundBusy = false; }
 });
 document.addEventListener('visibilitychange', () => {
   if (!audioContext) return;
-  if (document.hidden) audioContext.suspend(); else if (soundOn) audioContext.resume().catch(() => {});
+  if (document.hidden) audioContext.suspend().catch(() => {}); else if (soundOn) audioContext.resume().catch(() => {});
 });
 if (location.protocol === 'file:') {
   const warning = document.createElement('p'); warning.className = 'file-protocol-warning';
   warning.textContent = 'To play Connect X, open this site through its web address or run npm run dev in the project folder.'; document.body.prepend(warning);
 }
-setupGame();
+const game = setupGame();
+const workshop = document.getElementById('workshop-view');
+let room, roomPromise, opening = 0;
+async function enterRoom(target = 'overview', project = null) {
+  const request = ++opening;
+  if (!workshop.open) workshop.showModal();
+  document.body.classList.add('in-workshop');
+  document.getElementById('room-loading').hidden = Boolean(room);
+  document.getElementById('room-error').hidden = true;
+  try {
+    roomPromise ??= import('./room3d.js').then(({ createWorkshop }) => createWorkshop({ dialog: workshop, game }));
+    room = await roomPromise;
+    if (request !== opening || !workshop.open) return;
+    document.getElementById('room-loading').hidden = true;
+    room.open(target);
+    if (project) room.openProject(project);
+  } catch (error) {
+    roomPromise = null;
+    document.getElementById('room-loading').hidden = true;
+    document.getElementById('room-error').hidden = false;
+    console.warn('3D workshop unavailable:', error.message);
+  }
+}
+function leaveRoom() {
+  opening++; room?.close(); workshop.close(); document.body.classList.remove('in-workshop');
+  document.getElementById('enter-workshop').focus({ preventScroll: true });
+}
+document.getElementById('enter-workshop').addEventListener('click', () => enterRoom());
+for (const button of document.querySelectorAll('[data-scroll]')) button.addEventListener('click', () => {
+  enterRoom({ work: 'monitor', about: 'notebook', play: 'game' }[button.dataset.scroll]);
+});
+document.getElementById('room-exit').addEventListener('click', leaveRoom);
+document.getElementById('room-fallback').addEventListener('click', leaveRoom);
+document.getElementById('room-back').addEventListener('click', () => {
+  if (room && room.view !== 'overview') room.focus('overview'); else leaveRoom();
+});
+workshop.addEventListener('cancel', event => {
+  event.preventDefault();
+  if (room && room.view !== 'overview') room.focus('overview'); else leaveRoom();
+});
+
+document.addEventListener('click', event => {
+  const readProject = event.target.closest('[data-read-project]');
+  if (readProject) {
+    event.preventDefault();
+    if (workshop.open && room) room.openProject(readProject.dataset.readProject);
+    else enterRoom('monitor', readProject.dataset.readProject);
+    return;
+  }
+  const storyLink = event.target.closest('[data-open-story]');
+  if (storyLink) {
+    const monitorContent = storyLink.closest('.monitor-content');
+    const story = monitorContent
+      ? [...monitorContent.querySelectorAll('[data-story]')].find(element => element.dataset.story === storyLink.dataset.openStory)
+      : document.getElementById(storyLink.dataset.openStory);
+    if (story) {
+      story.open = true;
+      if (monitorContent) {
+        event.preventDefault();
+        monitorContent.scrollTop = story.offsetTop - 18;
+      }
+    }
+  }
+  if (event.target.closest('[data-best-challenge]')) {
+    document.querySelector('input[name="opponent"][value="best"]').checked = true;
+    document.getElementById('connect-target').value = '4';
+    document.getElementById('first-player').value = 'bot';
+    document.getElementById('first-player').dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  const gameLink = event.target.closest('a[href="#play"]');
+  if (gameLink && workshop.contains(gameLink) && room) {
+    event.preventDefault(); room.focus('game');
+  }
+  if (storyLink && workshop.open && !storyLink.closest('.monitor-content') && room) {
+    event.preventDefault(); room.openProject('connect-x');
+  }
+});
+function openLinkedStory() {
+  const story = document.getElementById(location.hash.slice(1));
+  if (story?.classList.contains('project-story')) story.open = true;
+}
+window.addEventListener('hashchange', openLinkedStory);
+openLinkedStory();

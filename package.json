@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "dev": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist",
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
     "test": "node --test tests/*.test.mjs && python3 tests/test_agents.py",
-    "check": "node --check dist/app.js && node --check dist/game.js && node --check dist/bot-worker.js"
+    "check": "node --check server.mjs && node --check dist/app.js && node --check dist/music.js && node --check dist/game.js && node --check dist/bot-worker.js && node --check dist/room3d.js && node --check dist/room-model.js && node --check dist/room-surfaces.js"
   }
 }

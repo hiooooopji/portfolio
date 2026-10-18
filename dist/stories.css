@@ -1,0 +1,87 @@
+.project:has(.project-story){row-gap:25px}
+.project-story{grid-column:1/-1;border:1px solid var(--line);border-radius:6px;background:#eeebdf55;overflow:hidden;scroll-margin-top:35px}
+.project-story>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 25px;font:400 23px/1.3 var(--serif)}
+.project-story>summary::-webkit-details-marker{display:none}
+.project-story>summary small{display:block;font:8px var(--mono);letter-spacing:1.6px;color:var(--muted);margin-bottom:7px}
+.story-toggle{font:25px var(--sans);font-weight:300;color:var(--rust);transition:transform .2s}
+.project-story[open] .story-toggle{transform:rotate(45deg)}
+.project-story>summary:hover{background:#e6e2d44d}
+.story-body{border-top:1px solid var(--line);padding:38px;line-height:1.85}
+.story-intro{max-width:690px}
+.story-intro .eyebrow{font-size:9px;letter-spacing:1.5px;margin-bottom:14px}
+.story-intro h4{font:400 37px/1.15 var(--serif);letter-spacing:-1px;margin:0 0 19px}
+.story-intro h4 em{color:var(--rust);font-weight:400}
+.story-body p{font-size:13px;color:var(--muted);margin:0}
+.story-body a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:#b9b5a7}
+.story-body a:hover{color:var(--rust)}
+.story-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-block:1px solid var(--line);padding:20px 0;margin:28px 0 32px}
+.story-facts dt{font:8px var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.story-facts dd{font-size:12px;margin:0;color:var(--ink)}
+.story-steps{display:grid;grid-template-columns:1fr 1fr;gap:30px 42px}
+.step-number{font:8px var(--mono);letter-spacing:1.2px;color:var(--rust)}
+.story-body h5{font:400 24px/1.25 var(--serif);letter-spacing:-.5px;margin:10px 0 12px}
+.story-pipeline{display:flex;align-items:center;flex-wrap:wrap;gap:10px 17px;margin:30px 0;padding:18px 20px;border-radius:4px;background:#dce2cf66;font:10px var(--mono);color:#5b6a4f}
+.story-pipeline b{font-size:17px;font-weight:400;color:#8c967a}
+.story-note{padding:20px 24px;background:#e8deca66;border-left:2px solid #b29365;border-radius:0 4px 4px 0;margin:25px 0}
+.story-note>strong{display:block;font-size:12px;font-weight:600;margin-bottom:8px;color:#7e6243}
+.story-note p{font-size:12px;color:#7e7566}
+.story-coda{max-width:720px;margin:25px 0}
+.story-links{display:flex;gap:12px 25px;flex-wrap:wrap;font-size:12px;margin-top:24px}
+.story-body .story-credit{font-size:10px;line-height:1.8;margin-top:22px;max-width:740px}
+.connect-art{background:#d9dfc9;color:#4a5a3f;isolation:isolate}
+.connect-art:before{content:'';position:absolute;inset:25% -20% -65% 25%;background:#c2cbae;border-radius:50%;z-index:-1}
+.strategy-board{position:absolute;left:10%;top:18%;width:58%;display:grid;grid-template-columns:repeat(7,1fr);gap:7px;padding:15px;background:#84936d;border:5px solid #6d7f59;border-radius:9px;transform:rotate(-8deg);box-shadow:8px 10px 0 #60734d20}
+.strategy-board i{display:block;aspect-ratio:1;border-radius:50%;background:#cbd3ba;box-shadow:inset 2px 3px 3px #39442f35}
+.strategy-board i.amber{background:#dca34e;box-shadow:inset -2px -3px 0 #b87c38,0 0 0 2px #bcb59433}
+.strategy-board i.sage{background:#536c48;box-shadow:inset -2px -3px 0 #415637}
+.strategy-caption{position:absolute;bottom:22px;left:25px;font:italic 17px/1.4 var(--serif)}
+.strategy-caption span,.strategy-caption em{display:block}
+.strategy-caption em{color:#7d855d}
+.strategy-sticker{position:absolute;right:7%;top:34%;padding:18px;background:#f0e5c9;box-shadow:3px 5px 10px #454b2920;transform:rotate(8deg);font:italic 23px/1.1 var(--serif);color:#9b6843}
+.game-story-link{display:block;background:transparent;border:0;border-bottom:1px solid #aaa797;padding:3px 0;margin-top:14px;color:#6d715c;font-size:11px}
+.room-game-controls .game-story-link{font-size:10px;margin-top:9px}
+.monitor-tabs{overflow-x:auto}
+.monitor-tabs button{flex-shrink:0}
+.monitor-content{position:relative}
+.monitor-ui .project-story{width:100%}
+.monitor-ui .project-story>summary{font-size:22px;padding:17px 20px}
+.monitor-ui .story-body{padding:24px}
+.monitor-ui .story-intro h4{font-size:31px}
+.monitor-ui .story-steps{gap:25px 30px}
+.monitor-ui .story-body h5{font-size:23px}
+.monitor-ui .story-facts{gap:17px}
+.monitor-ui .strategy-board{gap:5px;padding:10px;max-width:205px}
+.monitor-ui .strategy-sticker{font-size:20px;padding:15px;right:5%}
+.monitor-ui .strategy-caption{font-size:15px;bottom:15px}
+.monitor-ui.compact .story-body{padding:23px 19px}
+.monitor-ui.compact .story-steps,.monitor-ui.compact .story-facts{grid-template-columns:1fr}
+.monitor-ui.compact .story-body p{font-size:15px}
+.monitor-ui.compact .story-body .story-credit{font-size:12px}
+.monitor-ui.compact .story-links,.monitor-ui.compact .story-facts dd{font-size:13px}
+.monitor-ui.compact .story-body h5{font-size:27px}
+.monitor-ui.compact .story-pipeline{font-size:11px}
+.monitor-ui.compact .strategy-board{max-width:180px;top:17%;left:8%}
+.monitor-ui.compact .strategy-caption{left:auto;right:20px;font-size:14px;bottom:20px}
+@media(min-width:740px){.strategy-board{max-width:255px}}
+@media(max-width:739px){
+  .project:has(.project-story){row-gap:21px}
+  .project-story>summary{padding:18px;font-size:21px}
+  .project-story>summary small{font-size:7px}
+  .story-body{padding:25px 20px}
+  .story-intro h4{font-size:30px}
+  .story-intro .eyebrow{font-size:7px}
+  .story-facts{grid-template-columns:1fr;gap:17px;margin:23px 0;padding:20px 0}
+  .story-facts dt{margin-bottom:5px}
+  .story-steps{grid-template-columns:1fr;gap:25px}
+  .story-body h5{font-size:23px}
+  .story-body p{font-size:12px}
+  .story-note{padding:17px 18px}
+  .story-note p{font-size:11px}
+  .story-pipeline{font-size:9px;gap:8px 12px;padding:15px}
+  .story-links{font-size:11px;gap:15px 20px}
+  .strategy-board{width:65%;left:8%;gap:6px;padding:12px;top:17%;max-width:225px}
+  .strategy-sticker{font-size:21px;right:5%}
+  .strategy-caption{font-size:16px;left:20px;bottom:17px}
+  .room-game-controls .game-story-link{font-size:9px;margin-top:7px}
+}
+@media(prefers-reduced-motion:reduce){.story-toggle{transition:none}}
