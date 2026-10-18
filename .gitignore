@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+.sites-runtime/
+.sites-checkout/
+*.tar.gz
+*.tar
