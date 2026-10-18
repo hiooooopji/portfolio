@@ -1,4 +1,4 @@
-# The Midnight Workshop
+# Siddharth | Software & Game Developer
 
 Siddharth’s standalone Node.js portfolio, built with HTML, CSS, JavaScript, original SVG illustrations, and his two original Connect X Python agents.
 
@@ -18,8 +18,11 @@ Edit files in `dist/` and refresh the browser to see changes. Stop the server wi
 
 ## What’s included
 
+- A straightforward portfolio with a sticky navigation bar, project jump links, readable project summaries, and build notes available directly on the page.
+- A custom S monogram shared by the header, favicon, and optional 3D workshop.
+
 - An original illustrated workshop with project, notebook, and game hotspots.
-- A real Three.js room behind **Come on in**, with drag-to-orbit navigation, clickable 3D objects, and animated camera moves. Its dependencies are served locally and load only when entering the room.
+- A real Three.js room behind **Open the 3D room**, with drag-to-orbit navigation, clickable 3D objects, and animated camera moves. Its dependencies are served locally and load only when entering the room.
 - A project browser attached to the monitor’s 3D screen, with individual project tabs and a repository drawer.
 - A physical notebook with turnable pages and a drawing canvas. Doodles stay in this browser’s local storage and can be cleared.
 - A modeled Connect X board with real holes, animated pieces, and clickable columns, driven by the same original Python agents and shared game state as the page.
@@ -36,7 +39,7 @@ Best Bot uses the embedded WeakC4 first-player policy on standard Connect 4 and 
 
 ## Content and artwork
 
-Edit `dist/index.html` for biography, featured work, and outgoing links. Edit the repository list in `dist/app.js`. No email address, résumé, employment history, or specific team contributions beyond the user-confirmed roles have been invented. The project graphics are original illustrative compositions, not product screenshots or game assets.
+Edit `dist/index.html` for biography, featured work, and outgoing links. `dist/portfolio.css` styles the regular portfolio independently of the 3D room. Edit the repository list in `dist/app.js`. No email address, résumé, employment history, or specific team contributions beyond the user-confirmed roles have been invented. The project graphics are original illustrative compositions, not product screenshots or game assets.
 
 Build stories are in `dist/index.html`, styled by `dist/stories.css`, and shared with the monitor by cloning the project content. Technical descriptions follow the supplied Python agents and the public botas navigation, acquisition, and feature documentation. WeakC4’s perfect first-player foundation is credited separately from the adapter and bounded search fallback.
 

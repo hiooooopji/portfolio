@@ -158,7 +158,7 @@ export function setupGame() {
       await engine.request('init');
       if (currentSession !== session) return;
       active = true; busy = false; start.disabled = false; start.innerHTML = 'Start a new round <span>↻</span>';
-      $('game-caption').textContent = 'No sign-up. No stakes. Maybe a little pride.';
+      $('game-caption').textContent = 'You play amber. The bot plays green.';
       if (botMark === 1) await botMove(currentSession);
       else { setStatus('Your turn. Pick a column.'); render(); }
     } catch (error) { if (currentSession === session) showError(error); }
@@ -172,8 +172,8 @@ export function setupGame() {
       : target === 4 && $('first-player').value === 'bot'
         ? 'Standard Connect 4, bot first: the setup for its complete first-player strategy.'
         : 'Timed-search challenge. Choose Connect 4 + Bot first to try its complete first-player strategy.';
-    setStatus('Fresh settings. Ready when you are.'); start.disabled = false; start.innerHTML = 'Let’s play <span>↗</span>';
-    $('game-caption').textContent = 'No sign-up. No stakes. Maybe a little pride.'; render();
+    setStatus('Fresh settings. Ready when you are.'); start.disabled = false; start.innerHTML = 'Start game <span aria-hidden="true">↗</span>';
+    $('game-caption').textContent = 'You play amber. The bot plays green.'; render();
   }
   document.querySelectorAll('input[name=opponent], #connect-target, #first-player').forEach(input => input.addEventListener('change', settingsChanged));
   start.addEventListener('click', newGame);

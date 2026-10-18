@@ -4,59 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f1e8">
-  <meta name="description" content="Step into Siddharth’s Midnight Workshop. Explore games, bots, learning tools, and play Connect X against his original Python agents.">
-  <title>Siddharth — The Midnight Workshop</title>
+  <meta name="description" content="Siddharth’s software and game development portfolio. Explore learning apps, Minecraft automation, and Python game AI, read the build notes, and play Connect X.">
+  <title>Siddharth | Software &amp; Game Developer</title>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./room3d.css">
   <link rel="stylesheet" href="./stories.css">
+  <link rel="stylesheet" href="./portfolio.css">
   <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script>
   <script type="module" src="./app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#work">Skip to projects</a>
   <header class="site-header wrap">
-    <a href="#home" class="wordmark" aria-label="Siddharth, home"><span class="brand-star">✳</span> siddharth<span class="brand-dot">.</span></a>
-    <nav aria-label="Main navigation"><a href="#work">The work</a><a href="#about">The person</a><a class="nav-play" href="#play">Play a little <span>↗</span></a></nav>
+    <a href="#home" class="wordmark" aria-label="Siddharth, home"><img class="brand-mark" src="./assets/favicon.svg" width="40" height="40" alt="">siddharth<span class="brand-dot">.</span></a>
+    <nav aria-label="Main navigation"><a href="#home">About</a><a href="#work">Projects</a><a href="#play">Play</a><a href="#workshop">3D room</a><a href="https://github.com/hiooooopji" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav>
     <button id="sound-toggle" class="sound-toggle" aria-pressed="false" aria-label="Play calm background music" title="After Hours · calm ambient music"><span class="sound-bars"><i></i><i></i><i></i><i></i></span><span id="sound-label">Music off</span></button>
   </header>
   <main>
     <section id="home" class="hero wrap">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot"></span> THE MIDNIGHT WORKSHOP</p>
-        <h1>A little curious.<br>A little restless.<br><em>Always building.</em></h1>
-        <p class="hero-description">I’m Siddharth. I make bots that think, games to get lost in, and tools that make life a little more interesting.</p>
-        <button id="enter-workshop" class="button button-dark" type="button">Come on in <span>↗</span></button>
-        <div class="hero-note"><svg viewBox="0 0 62 38" aria-hidden="true"><path d="M2 7 Q35 0 47 31 M35 25 L48 33 L51 18"/></svg><span>Or click around my desk.<br>There’s a story in everything.</span></div>
-      </div>
-      <div class="workshop-container">
-        <div class="room-caption"><span>MY LITTLE CORNER OF THE INTERNET</span><span class="moon-icon">☾</span></div>
-        <div class="room-stage" id="room-stage">
-          <img class="room-art" src="./assets/workshop.svg" width="800" height="680" alt="An illustrated midnight workshop with a glowing monitor, rainy window, books, plants, a desk lamp, and a Connect X board.">
-          <div class="window-rain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <button class="hotspot hotspot-monitor" data-scroll="work"><span class="hotspot-dot"></span><span class="hotspot-label">01 / The work <b>↗</b></span></button>
-          <button class="hotspot hotspot-book" data-scroll="about"><span class="hotspot-dot"></span><span class="hotspot-label">02 / My notebook <b>↗</b></span></button>
-          <button class="hotspot hotspot-game" data-scroll="play"><span class="hotspot-dot"></span><span class="hotspot-label">03 / Your move <b>↗</b></span></button>
-          <button id="lamp-toggle" class="lamp-toggle" aria-label="Dim the desk lamp" aria-pressed="false" title="Click to dim the lamp"></button>
-          <span class="room-scribble">a few too many tabs open.</span>
+        <p class="eyebrow">SOFTWARE &amp; GAME DEVELOPER</p>
+        <h1>Siddharth<span class="accent">.</span></h1>
+        <p class="hero-title">Building useful tools, clever bots, and playable worlds.</p>
+        <p class="hero-description">Hi, I’m Siddharth, a software and game developer. I work on learning apps, Minecraft automation, and game AI with Python, Java, JavaScript, and Godot.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#work">View projects <span aria-hidden="true">↓</span></a>
+          <a class="hero-github" href="https://github.com/hiooooopji" target="_blank" rel="noopener noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="room-footer"><span><span class="tiny-star">✦</span> BUILT ON CURIOSITY & LATE NIGHTS</span><span>INTERACTIVE DESK <span class="cursor-icon">↖</span></span></div>
+        <p class="hero-note">Browse the projects below, read how they were built, or <a href="#play">play against my bots</a>.</p>
       </div>
+
     </section>
-    <div class="section-rule wrap"><span>SCROLL TO EXPLORE</span><span>↓</span><span>CODE · PLAY · REPEAT</span></div>
     <section id="work" class="work-section wrap">
-      <div class="section-heading"><div><p class="eyebrow">01 / ON THE WORKBENCH</p><h2>Things I’ve put<br><em>a little of myself into.</em></h2></div><p>A mix of useful, playful, and<br>“what if I tried this?”</p></div>
-      <article class="project project-learnup">
+      <div class="section-heading"><div><p class="eyebrow">01 / SELECTED WORK</p><h2>Selected projects</h2></div><p>A few things I’ve helped build, and experiments of my own.</p></div>
+      <nav class="project-index" aria-label="Jump to a featured project">
+        <a href="#learn-up"><span>01</span> Learn Up <small>Learning apps</small></a>
+        <a href="#botas"><span>02</span> botas <small>Minecraft automation</small></a>
+        <a href="#full-picture"><span>03</span> The Full Picture <small>Detective puzzle</small></a>
+        <a href="#connect-x"><span>04</span> Connect X <small>Python game AI</small></a>
+      </nav>
+      <article class="project project-learnup" id="learn-up">
         <a class="project-art learnup-art" href="https://learnupsmartnote.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Learn Up Smart Note">
           <div class="art-topline"><span>LEARN UP!</span><span>LEARNING, REIMAGINED ↗</span></div>
           <div class="note-preview"><div class="note-sidebar"><span class="note-logo">✳</span><i></i><i></i><i></i></div><div class="note-content"><span class="mini-eyebrow">A LITTLE UNDERSTANDING GOES A LONG WAY</span><h3>Make it<br>make sense.</h3><div class="formula">∫ e<sup>−x²</sup> dx = √π</div><svg viewBox="0 0 260 80" aria-hidden="true"><path class="graph-axis" d="M10 68H250M130 8V75"/><path class="graph-curve" d="M15 67C70 67 85 15 130 15S190 67 245 67"/><path class="graph-fill" d="M15 67C70 67 85 15 130 15S190 67 245 67Z"/></svg></div></div>
           <span class="floating-tag">a space for bright ideas ✧</span>
         </a>
-        <div class="project-copy"><div class="project-number">PROJECT 01 <span>COLLABORATION</span></div><h3>Learn Up<span class="accent">!</span></h3><p>Making room for a different way to learn. Smart Note brings AI, interactive graphs, and 3D into a markdown workspace. The Android app turns study notes into a pixel RPG adventure.</p><p class="project-role">My part <span>Developer on the team</span></p><div class="tags"><span>Learning tools</span><span>Web + Android</span><span>AI</span></div><div class="project-links"><a href="https://learnupsmartnote.com/" target="_blank" rel="noopener noreferrer">Explore Smart Note ↗</a><a href="https://play.google.com/store/apps/details?id=com.nplus.learnup&hl=en_AU" target="_blank" rel="noopener noreferrer">Google Play ↗</a></div></div>
+        <div class="project-copy"><div class="project-number">PROJECT 01 <span>COLLABORATION</span></div><h3>Learn Up<span class="accent">!</span></h3><p class="project-type">Learning tools for web &amp; Android</p><p>Smart Note combines AI, interactive graphs, and 3D in a Markdown workspace. The companion Android app turns study notes into a pixel RPG adventure.</p><p class="project-role">My role <span>Developer on the team</span></p><div class="tags"><span>Learning tools</span><span>Web + Android</span><span>AI</span></div><div class="project-links"><a href="https://learnupsmartnote.com/" target="_blank" rel="noopener noreferrer">Explore Smart Note ↗</a><a href="https://play.google.com/store/apps/details?id=com.nplus.learnup&hl=en_AU" target="_blank" rel="noopener noreferrer">Google Play ↗</a></div></div>
       </article>
-      <article class="project project-botas" data-project-key="botas">
+      <article class="project project-botas" id="botas" data-project-key="botas">
         <a class="project-art botas-art" href="https://github.com/hiooooopji/botas" target="_blank" rel="noopener noreferrer" aria-label="View botas on GitHub"><div class="art-topline"><span>BOTAS</span><span>LET THE BOT DO ITS THING ↗</span></div><img src="./assets/botas.svg" alt="An illustrated block world with a small robot plotting its next move" width="560" height="320" loading="lazy"><div class="terminal-label"><span class="status-dot"></span><code>&gt; finding a way forward_</code></div></a>
-        <div class="project-copy"><div class="project-number">PROJECT 02 <span>AUTOMATION</span></div><h3>A world.<br> A bot. A plan.</h3><p>A Minecraft bot that turns a goal into a sequence of actions: find resources, make tools, navigate terrain, and keep going when the world gets in the way. Built in Java, with its own pathfinding backend and an assisted TAS route.</p><p class="project-role">The project <span>botas · Minecraft 1.8 & 1.7.10</span></p><div class="tags"><span>Java</span><span>Pathfinding</span><span>Legacy Fabric</span></div><div class="project-links"><a href="https://github.com/hiooooopji/botas" target="_blank" rel="noopener noreferrer">Look under the hood ↗</a><a href="#botas-story" data-open-story="botas-story">How I built it ↓</a></div></div>
+        <div class="project-copy"><div class="project-number">PROJECT 02 <span>AUTOMATION</span></div><h3>botas</h3><p class="project-type">Minecraft automation in Java</p><p>A bot that gathers resources, crafts tools, and navigates terrain to complete a goal. Built on AltoClef, with custom pathfinding and support for Minecraft 1.8 and 1.7.10.</p><p class="project-role">My work <span>Automation, navigation &amp; legacy integration</span></p><div class="tags"><span>Java</span><span>Pathfinding</span><span>Legacy Fabric</span></div><div class="project-links"><a href="https://github.com/hiooooopji/botas" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="#botas-story" data-open-story="botas-story">How I built it ↓</a></div></div>
 
         <details class="project-story" id="botas-story">
           <summary><span><small>THE BUILD NOTES</small>How I built botas</span><span class="story-toggle" aria-hidden="true">+</span></summary>
@@ -75,18 +73,18 @@
           </div>
         </details>
       </article>
-      <article class="project project-picture">
+      <article class="project project-picture" id="full-picture">
         <a class="project-art picture-art" href="https://100devs.itch.io/the-full-picture" target="_blank" rel="noopener noreferrer" aria-label="Play The Full Picture on itch.io"><div class="art-topline"><span>A COLLABORATIVE GAME JAM</span><span>FOLLOW YOUR CURIOSITY ↗</span></div><div class="picture-composition"><div class="picture-frame"><span class="picture-moon"></span><span class="picture-hill hill-one"></span><span class="picture-hill hill-two"></span><span class="picture-person"></span></div><div class="picture-type">The Full<br><em>Picture.</em></div><div class="magnifier"></div></div><span class="art-footnote">A DETECTIVE PUZZLE · MADE WITH GODOT</span></a>
-        <div class="project-copy"><div class="project-number">PROJECT 03 <span>COLLABORATION</span></div><h3>Look a<br>little closer.</h3><p>A detective puzzle made with the Godot Collaborative Game Jam community. Explore, spot the hidden details, and piece together The Full Picture.</p><p class="project-role">My part <span>Game developer on the team</span></p><div class="tags"><span>Godot</span><span>Puzzle</span><span>Browser game</span></div><div class="project-links"><a href="https://100devs.itch.io/the-full-picture" target="_blank" rel="noopener noreferrer">Play on itch.io ↗</a></div></div>
+        <div class="project-copy"><div class="project-number">PROJECT 03 <span>COLLABORATION</span></div><h3>The Full Picture</h3><p class="project-type">A collaborative detective puzzle</p><p>A browser game made with the Godot Collaborative Game Jam community. Explore the scene, find hidden details, and piece together the mystery.</p><p class="project-role">My role <span>Game developer on the team</span></p><div class="tags"><span>Godot</span><span>Puzzle</span><span>Browser game</span></div><div class="project-links"><a href="https://100devs.itch.io/the-full-picture" target="_blank" rel="noopener noreferrer">Play on itch.io ↗</a></div></div>
       </article>
-      <article class="project project-connect" data-project-key="connect-x">
+      <article class="project project-connect" id="connect-x" data-project-key="connect-x">
         <a class="project-art connect-art" href="#play" aria-label="Play my Connect X bots">
           <div class="art-topline"><span>CONNECT X</span><span>TWO VERY DIFFERENT MINDS ↗</span></div>
           <div class="strategy-board" aria-hidden="true"><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="amber"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="amber"></i><i class="sage"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="amber"></i><i class="sage"></i><i class="sage"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i><i class="amber"></i><i class="sage"></i><i class="sage"></i><i class="sage"></i><i class="empty"></i><i class="empty"></i><i class="empty"></i></div>
           <div class="strategy-caption"><span>One plays to win.</span><em>One plays for you.</em></div>
           <span class="strategy-sticker">Your move,<br>human.</span>
         </a>
-        <div class="project-copy"><div class="project-number">PROJECT 04 <span>GAME AI</span></div><h3>The best move.<br> The worst intentions.</h3><p>I built a pair of Python agents around opposite goals. Best Bot combines a complete first-player Connect 4 strategy with a fast search engine. Worst Bot looks ahead too — to give its opponent the win.</p><p class="project-role">My work <span>Strategy integration &amp; search in Python</span></p><div class="tags"><span>Python</span><span>Game theory</span><span>Bitboards</span></div><div class="project-links"><a href="#play" data-best-challenge>Take on Best Bot ↗</a><a href="#connect-story" data-open-story="connect-story">How I built it ↓</a></div></div>
+        <div class="project-copy"><div class="project-number">PROJECT 04 <span>GAME AI</span></div><h3>Connect X</h3><p class="project-type">Two Python bots. Opposite goals.</p><p>Best Bot uses a solved first-player Connect 4 strategy and a timed search. Worst Bot tries to help you win. Play either one here and explore the Python behind their decisions.</p><p class="project-role">My work <span>Strategy integration &amp; search in Python</span></p><div class="tags"><span>Python</span><span>Game theory</span><span>Bitboards</span></div><div class="project-links"><a href="#play" data-best-challenge>Take on Best Bot ↗</a><a href="#connect-story" data-open-story="connect-story">How I built it ↓</a></div></div>
         <details class="project-story" id="connect-story">
           <summary><span><small>THE BUILD NOTES</small>Inside the minds of my Connect X bots</span><span class="story-toggle" aria-hidden="true">+</span></summary>
           <div class="story-body">
@@ -106,27 +104,43 @@
           </div>
         </details>
       </article>
-      <details class="experiments" id="experiments"><summary><span><span class="drawer-icon">▤</span> The miscellaneous drawer <small>More code, side quests & experiments</small></span><span class="drawer-plus">+</span></summary><div class="repo-list" id="repo-list"></div><a class="all-repos" href="https://github.com/hiooooopji?tab=repositories" target="_blank" rel="noopener noreferrer">All public repositories on GitHub ↗</a></details>
+      <details class="experiments" id="experiments"><summary><span><span class="drawer-icon">▤</span> More projects &amp; experiments <small>11 more public repositories</small></span><span class="drawer-plus">+</span></summary><div class="repo-list" id="repo-list"></div><a class="all-repos" href="https://github.com/hiooooopji?tab=repositories" target="_blank" rel="noopener noreferrer">All public repositories on GitHub ↗</a></details>
     </section>
     <section id="play" class="play-section">
-      <div class="wrap play-layout"><div class="play-copy"><p class="eyebrow">02 / A FRIENDLY DISTRACTION</p><h2>Your move,<br><em>human.</em></h2><p>I built two Connect X bots with very different ambitions. One builds on a solved first-player winning strategy. The other really, <em>really</em> wants you to win.</p><p class="game-instructions">Drop a piece into any column. Connect <strong id="target-description">4</strong> in a row, column, or diagonal to win.</p><fieldset class="opponent-picker"><legend>PICK YOUR OPPONENT</legend><label class="opponent-option"><input type="radio" name="opponent" value="worst" checked><span class="bot-face friendly">:)</span><span><strong>The Worst Bot</strong><small>Your biggest supporter.</small></span><span class="radio-mark"></span></label><label class="opponent-option"><input type="radio" name="opponent" value="best"><span class="bot-face serious">&gt;_</span><span><strong>The Best Bot</strong><small>A solved strategy. Your challenge.</small></span><span class="radio-mark"></span></label></fieldset><div class="game-settings"><label>CONNECT <select id="connect-target" aria-label="Number of pieces to connect"><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option></select></label><label>FIRST MOVE <select id="first-player" aria-label="Who goes first"><option value="human">You</option><option value="bot">Bot</option></select></label></div><p class="bot-note" id="bot-note">A bot that deliberately helps its opponent win. Yes, really.</p><details class="source-details"><summary>A peek inside the bots ↗</summary><p>Best Bot builds on WeakC4’s complete first-player winning strategy for standard Connect 4. Choose Connect 4 and let the bot go first to try it. Other positions use a timed search. Both opponents run my original Python files in your browser.</p><p><a href="#connect-story" data-open-story="connect-story">Read how I built the strategy adapter and both search engines ↗</a></p><a href="./agents/submission.py" download>submission.py ↓</a><a href="./agents/opponent_win.py" download>opponent_win.py ↓</a><p>Best Bot includes <a href="https://github.com/2swap/WeakC4" target="_blank" rel="noopener noreferrer">WeakC4 by 2swap & contributors</a>, under <a href="./agents/WEAKC4-LICENSE.txt">GPL-3.0</a>.</p></details><button class="game-story-link" type="button" data-read-project="connect-x">How I built these bots ↗</button></div>
-        <div class="game-table"><div class="game-table-header"><span>CONNECT <b id="game-title-x">4</b><span class="game-title-period">.</span></span><span class="game-badge">A LITTLE SIDE QUEST</span></div><div class="game-status" role="status" aria-live="polite"><span id="turn-dot" class="player-dot"></span><span id="game-status">Pull up a chair. You’re amber.</span></div><div id="board" class="board" role="group" aria-label="Connect X board. Choose a column to drop your piece."></div><div class="board-legend"><span><i class="player-dot"></i> YOU</span><span><i class="bot-dot"></i> THE BOT</span></div><button id="start-game" class="button button-dark game-start">Let’s play <span>↗</span></button><p class="game-caption" id="game-caption">No sign-up. No stakes. Maybe a little pride.</p><div class="game-score"><span>THIS VISIT</span><span>You <b id="human-score">0</b></span><span>Bot <b id="bot-score">0</b></span><span>Draws <b id="draw-score">0</b></span></div></div>
+      <div class="wrap play-layout"><div class="play-copy"><p class="eyebrow">02 / PLAY A DEMO</p><h2>Play Connect X</h2><p>Try the Python bots in your browser. Pick an opponent, choose who goes first, and press <strong>Start game</strong>.</p><p class="game-instructions">Drop a piece into any column. Connect <strong id="target-description">4</strong> in a row, column, or diagonal to win.</p><fieldset class="opponent-picker"><legend>PICK YOUR OPPONENT</legend><label class="opponent-option"><input type="radio" name="opponent" value="worst" checked><span class="bot-face friendly">:)</span><span><strong>The Worst Bot</strong><small>Tries to help you win.</small></span><span class="radio-mark"></span></label><label class="opponent-option"><input type="radio" name="opponent" value="best"><span class="bot-face serious">&gt;_</span><span><strong>The Best Bot</strong><small>Plays to win.</small></span><span class="radio-mark"></span></label></fieldset><div class="game-settings"><label>CONNECT <select id="connect-target" aria-label="Number of pieces to connect"><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option></select></label><label>FIRST MOVE <select id="first-player" aria-label="Who goes first"><option value="human">You</option><option value="bot">Bot</option></select></label></div><p class="bot-note" id="bot-note">A bot that deliberately helps its opponent win. Yes, really.</p><details class="source-details"><summary>A peek inside the bots ↗</summary><p>Best Bot builds on WeakC4’s complete first-player winning strategy for standard Connect 4. Choose Connect 4 and let the bot go first to try it. Other positions use a timed search. Both opponents run my original Python files in your browser.</p><p><a href="#connect-story" data-open-story="connect-story">Read how I built the strategy adapter and both search engines ↗</a></p><a href="./agents/submission.py" download>submission.py ↓</a><a href="./agents/opponent_win.py" download>opponent_win.py ↓</a><p>Best Bot includes <a href="https://github.com/2swap/WeakC4" target="_blank" rel="noopener noreferrer">WeakC4 by 2swap & contributors</a>, under <a href="./agents/WEAKC4-LICENSE.txt">GPL-3.0</a>.</p></details><a class="game-story-link" href="#connect-story" data-open-story="connect-story">Read how I built these bots ↑</a></div>
+        <div class="game-table"><div class="game-table-header"><span>CONNECT <b id="game-title-x">4</b><span class="game-title-period">.</span></span><span class="game-badge">PLAYABLE DEMO</span></div><div class="game-status" role="status" aria-live="polite"><span id="turn-dot" class="player-dot"></span><span id="game-status">Choose an opponent, then start a game.</span></div><div id="board" class="board" role="group" aria-label="Connect X board. Choose a column to drop your piece."></div><div class="board-legend"><span><i class="player-dot"></i> YOU</span><span><i class="bot-dot"></i> THE BOT</span></div><button id="start-game" class="button button-dark game-start">Start game <span aria-hidden="true">↗</span></button><p class="game-caption" id="game-caption">You play amber. The bot plays green.</p><div class="game-score"><span>THIS VISIT</span><span>You <b id="human-score">0</b></span><span>Bot <b id="bot-score">0</b></span><span>Draws <b id="draw-score">0</b></span></div></div>
       </div>
     </section>
-    <section id="about" class="about-section wrap"><div class="about-note"><span class="paper-tape"></span><span class="eyebrow">A NOTE TO SELF</span><p>Stay curious.<br>Make something.<br>See what happens.</p><span class="note-doodle">✧ <span>↗</span> ✳</span><small>— the unofficial workshop rules</small></div><div class="about-copy"><p class="eyebrow">03 / THE PERSON BEHIND THE DESK</p><h2>Hi again.<br><em>I’m Siddharth.</em></h2><p>I like the space where code meets curiosity. Sometimes that looks like teaching a bot to navigate Minecraft. Sometimes it’s making a game with a team, building learning tools, or writing an agent whose entire job is to lose.</p><p>This workshop is a home for those projects — the useful ones, the playful ones, and the ones that start with a question.</p><div class="about-tags"><span>Python</span><span>Java</span><span>JavaScript</span><span>Godot</span></div><a class="text-link" href="https://github.com/hiooooopji" target="_blank" rel="noopener noreferrer">Find me on GitHub <span>↗</span></a></div></section>
-    <footer class="site-footer wrap"><div class="footer-top"><div><p class="eyebrow">THE LIGHT’S STILL ON.</p><h2>Thanks for<br><em>stopping by.</em></h2></div><a href="https://github.com/hiooooopji" class="footer-github" target="_blank" rel="noopener noreferrer">See what I’m building <span>↗</span></a></div><div class="footer-bottom"><span>© <span id="year">2026</span> Siddharth · Made with curiosity.</span><span id="workshop-clock">SOMEWHERE BETWEEN ONE MORE IDEA & BEDTIME</span><a href="#home">Back to the desk ↑</a></div></footer>
+    <section id="about" class="about-section wrap"><div class="about-note"><span class="paper-tape"></span><span class="eyebrow">A NOTE TO SELF</span><p>Stay curious.<br>Make something.<br>See what happens.</p><span class="note-doodle">✧ <span>↗</span> ✳</span><small>— the unofficial workshop rules</small></div><div class="about-copy"><p class="eyebrow">03 / A LITTLE MORE ABOUT ME</p><h2>Code meets curiosity.</h2><p>I like the space where code meets curiosity. Sometimes that looks like teaching a bot to navigate Minecraft. Sometimes it’s making a game with a team, building learning tools, or writing an agent whose entire job is to lose.</p><p>I work with Python, Java, JavaScript, and Godot. The projects above include both my own experiments and collaborations, with my role listed for each one.</p><div class="about-tags"><span>Python</span><span>Java</span><span>JavaScript</span><span>Godot</span></div><a class="text-link" href="https://github.com/hiooooopji" target="_blank" rel="noopener noreferrer">Find me on GitHub <span>↗</span></a></div></section>
+    <section id="workshop" class="workshop-section wrap" aria-labelledby="room-section-title">
+      <div class="workshop-copy"><p class="eyebrow">04 / OPTIONAL INTERACTIVE TOUR</p><h2 id="room-section-title">Step into the workshop.</h2><p>A different way to explore the same projects. Browse the monitor, flip through my notebook, or sit down for a game of Connect X.</p><button id="enter-workshop" class="button button-outline" type="button">Open the 3D room <span aria-hidden="true">↗</span></button><p class="workshop-help">Drag to look around. Press Escape to return.</p></div>
+      <div class="workshop-container">
+        <div class="room-caption"><span>THE MIDNIGHT WORKSHOP · EXPLORE IN 3D</span><span class="moon-icon" aria-hidden="true">☾</span></div>
+        <div class="room-stage" id="room-stage">
+          <img class="room-art" src="./assets/workshop.svg" width="800" height="680" alt="An illustrated midnight workshop with a glowing monitor, rainy window, books, plants, a desk lamp, and a Connect X board.">
+          <div class="window-rain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <button class="hotspot hotspot-monitor" data-scroll="work" aria-label="Explore projects on the 3D monitor"><span class="hotspot-dot"></span><span class="hotspot-label">Projects <b>↗</b></span></button>
+          <button class="hotspot hotspot-book" data-scroll="about" aria-label="Open my notebook in the 3D room"><span class="hotspot-dot"></span><span class="hotspot-label">Notebook <b>↗</b></span></button>
+          <button class="hotspot hotspot-game" data-scroll="play" aria-label="Play Connect X in the 3D room"><span class="hotspot-dot"></span><span class="hotspot-label">Connect X <b>↗</b></span></button>
+          <button id="lamp-toggle" class="lamp-toggle" aria-label="Dim the desk lamp" aria-pressed="false" title="Click to dim the lamp"></button>
+          <span class="room-scribble">a few too many tabs open.</span>
+        </div>
+        <div class="room-footer"><span>CLICK A LABEL TO STEP INSIDE</span><span>DRAG TO LOOK AROUND <span class="cursor-icon" aria-hidden="true">↖</span></span></div>
+      </div>
+    </section>
+    <footer class="site-footer wrap"><div class="footer-top"><div><p class="eyebrow">THE LIGHT’S STILL ON.</p><h2>Thanks for<br><em>stopping by.</em></h2></div><a href="https://github.com/hiooooopji" class="footer-github" target="_blank" rel="noopener noreferrer">See what I’m building <span>↗</span></a></div><div class="footer-bottom"><span>© <span id="year">2026</span> Siddharth · Made with curiosity.</span><span id="workshop-clock">SOMEWHERE BETWEEN ONE MORE IDEA & BEDTIME</span><a href="#home">Back to top ↑</a></div></footer>
   </main>
   <dialog id="workshop-view" class="workshop-view" aria-labelledby="workshop-title">
     <div id="world-layer" class="world-layer"></div>
     <div id="surface-layer" class="surface-layer"></div>
     <header class="world-header">
-      <button id="room-back" class="world-back" type="button">← <span>Back outside</span></button>
-      <div class="world-title"><span class="brand-star">✳</span><span id="workshop-title">The Midnight Workshop</span><small id="room-location">MAKE YOURSELF AT HOME</small></div>
+      <button id="room-back" class="world-back" type="button">← <span>Back to portfolio</span></button>
+      <div class="world-title"><img class="brand-mark" src="./assets/favicon.svg" width="28" height="28" alt=""><span id="workshop-title">The Midnight Workshop</span><small id="room-location">MAKE YOURSELF AT HOME</small></div>
       <button id="room-exit" class="world-exit" type="button" aria-label="Leave the 3D workshop">×</button>
     </header>
-    <div id="room-intro" class="room-intro"><p class="eyebrow">THE LIGHT’S STILL ON.</p><h2>Welcome<br> <em>to my world.</em></h2><p>Drag to look around.<br> Click something that makes you curious.</p></div>
+    <div id="room-intro" class="room-intro"><p class="eyebrow">THE LIGHT’S STILL ON.</p><h2>The workshop.</h2><p>Drag to look around.<br>Choose Projects, Notebook, or Connect X below.</p></div>
     <div id="world-labels" class="world-labels">
-      <button data-world-target="monitor"><span>01</span> The monitor <b>↗</b></button>
+      <button data-world-target="monitor"><span>01</span> Projects <b>↗</b></button>
       <button data-world-target="notebook"><span>02</span> My notebook <b>↗</b></button>
       <button data-world-target="game"><span>03</span> Connect X <b>↗</b></button>
     </div>
@@ -139,7 +153,7 @@
       <button data-world-target="notebook"><span>▤</span><small>Notebook</small></button>
       <button data-world-target="game"><span>⠿</span><small>Connect X</small></button>
     </nav>
-    <div id="room-loading" class="room-loading" role="status"><span class="brand-star">✳</span><p>Turning the lights on…</p></div>
+    <div id="room-loading" class="room-loading" role="status"><img class="brand-mark" src="./assets/favicon.svg" width="56" height="56" alt=""><p>Opening the 3D workshop…</p></div>
     <div id="room-error" class="room-error" hidden><h2>The room couldn’t open.</h2><p>Your browser may have 3D graphics disabled. You can still explore every project and play Connect X on the page.</p><button id="room-fallback" class="button button-dark">Back to the portfolio ↗</button></div>
   </dialog>
   <div id="toast" class="toast" role="status"></div>

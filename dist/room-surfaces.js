@@ -3,7 +3,7 @@ import { CSS3DObject } from './vendor/three/CSS3DRenderer.js';
 
 export function createSurfaces(cssScene, model) {
   const monitorElement=document.createElement('section');monitorElement.className='monitor-ui';monitorElement.setAttribute('aria-label','Projects on the monitor');
-  monitorElement.innerHTML=`<div class="monitor-topbar"><span class="monitor-dots"><i></i><i></i><i></i></span><span>workshop://projects</span><span>✳</span></div><div class="monitor-heading"><div><small>A FEW THINGS I’VE BUILT</small><h2>The work<span>.</span></h2></div><a href="https://github.com/hiooooopji" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><nav class="monitor-tabs" aria-label="Choose a project"><button data-project="0" aria-pressed="true">01 · Learn Up!</button><button data-project="1" aria-pressed="false">02 · botas</button><button data-project="2" aria-pressed="false">03 · The Full Picture</button><button data-project="3" aria-pressed="false">04 · Connect X</button><button data-project="4" aria-pressed="false">The drawer ↗</button></nav><div class="monitor-content"></div><footer class="monitor-status"><span class="status-dot"></span><span>BUILT WITH CURIOSITY</span><span id="monitor-count">01 / 05</span></footer>`;
+  monitorElement.innerHTML=`<div class="monitor-topbar"><span class="monitor-dots"><i></i><i></i><i></i></span><span>workshop://projects</span><img src="./assets/favicon.svg" width="16" height="16" alt=""></div><div class="monitor-heading"><div><small>A FEW THINGS I’VE BUILT</small><h2>Projects<span>.</span></h2></div><a href="https://github.com/hiooooopji" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><nav class="monitor-tabs" aria-label="Choose a project"><button data-project="0" aria-pressed="true">01 · Learn Up!</button><button data-project="1" aria-pressed="false">02 · botas</button><button data-project="2" aria-pressed="false">03 · The Full Picture</button><button data-project="3" aria-pressed="false">04 · Connect X</button><button data-project="4" aria-pressed="false">More projects ↗</button></nav><div class="monitor-content"></div><footer class="monitor-status"><span class="status-dot"></span><span>BUILT WITH CURIOSITY</span><span id="monitor-count">01 / 05</span></footer>`;
   const sourceProjects=[...document.querySelectorAll('#work>.project')];
   let pendingStory=false;
   function showProject(index,expand=false){
@@ -11,13 +11,13 @@ export function createSurfaces(cssScene, model) {
     monitorElement.querySelectorAll('[data-project]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.project)===index)));
     const content=monitorElement.querySelector('.monitor-content');content.replaceChildren();
     if(index<sourceProjects.length){
-      const project=sourceProjects[index].cloneNode(true);
+      const project=sourceProjects[index].cloneNode(true);project.removeAttribute('id');
       project.querySelectorAll('[id]').forEach(element=>{element.dataset.story=element.id;element.removeAttribute('id');});
       content.append(project);
       if(expand){const story=project.querySelector('.project-story');if(story)story.open=true;}
     }
     else {
-      const heading=document.createElement('div');heading.className='drawer-heading';heading.innerHTML='<h3>The miscellaneous drawer.</h3><p>More code, side quests, and experiments.</p>';
+      const heading=document.createElement('div');heading.className='drawer-heading';heading.innerHTML='<h3>More projects &amp; experiments.</h3><p>More code, side quests, and experiments.</p>';
       const repos=document.getElementById('repo-list').cloneNode(true);repos.removeAttribute('id');content.append(heading,repos);
     }
     monitorElement.querySelector('#monitor-count').textContent=`0${index+1} / 05`;content.scrollTop=0;

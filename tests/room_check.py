@@ -17,6 +17,7 @@ driver=webdriver.Chrome(service=Service('/usr/bin/chromedriver'),options=options
 wait=WebDriverWait(driver,60);checks=[]
 def el(id):return driver.find_element(By.ID,id)
 def css(selector):return driver.find_element(By.CSS_SELECTOR,selector)
+def viewport_rect(element):return driver.execute_script('return arguments[0].getBoundingClientRect().toJSON()',element)
 def check(name,condition):
     assert condition,name
     checks.append(name);print('PASS:',name,flush=True)
@@ -28,12 +29,14 @@ def shot(name):driver.save_screenshot(str(out/name))
 def ready():wait.until(lambda d:'Your turn' in el('game-status').text or 'got it' in el('game-status').text or 'takes this' in el('game-status').text)
 try:
     driver.get('http://127.0.0.1:4173/');wait.until(lambda d:len(d.find_elements(By.CSS_SELECTOR,'.slot'))==42)
+    driver.execute_script("document.documentElement.style.scrollBehavior='auto'")
+    css('.site-header a[href="#workshop"]').click()
     el('enter-workshop').click();settled('overview')
     check('enter opens actual WebGL room',el('workshop-view').get_attribute('open') is not None and bool(driver.find_elements(By.CSS_SELECTOR,'#world-layer canvas')))
     check('loading completes without fallback',not el('room-loading').is_displayed() and not el('room-error').is_displayed())
     if '--visual-only' in sys.argv:
-        label=css('#world-labels [data-world-target="notebook"]').rect
-        canvas=css('#world-layer canvas');rect=canvas.rect
+        label=viewport_rect(css('#world-labels [data-world-target="notebook"]'))
+        canvas=css('#world-layer canvas');rect=viewport_rect(canvas)
         ActionChains(driver).move_to_element_with_offset(canvas,label['x']+label['width']/2+20-rect['width']/2,label['y']+label['height']+11-rect['height']/2).click().perform()
         settled('notebook');check('physical notebook opens when clicked',css('.notebook-ui').is_displayed())
         focus('overview')
@@ -46,14 +49,15 @@ try:
     shot('01-room-desktop.png')
     if '--game-only' not in sys.argv:
         # Select the physical monitor beneath its projected label, not a menu button.
-        label=css('#world-labels [data-world-target="monitor"]').rect
+        label=viewport_rect(css('#world-labels [data-world-target="monitor"]'))
         x,y=label['x']+label['width']/2,label['y']+label['height']+65
-        ActionChains(driver).move_by_offset(x,y).click().perform();ActionChains(driver).move_by_offset(-x,-y).perform()
+        canvas=css('#world-layer canvas');rect=viewport_rect(canvas)
+        ActionChains(driver).move_to_element_with_offset(canvas,x-rect['width']/2,y-rect['height']/2).click().perform()
         settled('monitor')
         check('clicking monitor geometry moves camera to projects',css('.monitor-ui').is_displayed())
         check('monitor contains projects only',not el('room-game-controls').is_displayed() and not any(x.is_displayed() for x in driver.find_elements(By.CSS_SELECTOR,'.notebook-ui')))
         shot('02-monitor-desktop.png')
-        css('[data-project="1"]').click();check('monitor tabs browse real projects','A world.' in css('.monitor-content').text)
+        css('[data-project="1"]').click();check('monitor tabs browse real projects','Minecraft automation in Java' in css('.monitor-content').text)
         css('[data-project="4"]').click();check('repository drawer available inside monitor',len(driver.find_elements(By.CSS_SELECTOR,'.monitor-ui .repo-link'))==11)
         focus('notebook');shot('03-notebook-desktop.png')
         check('notebook opens at the same physical desk',css('.notebook-ui').is_displayed() and not css('.monitor-ui').is_displayed())
@@ -66,8 +70,8 @@ try:
     focus('game');check('game controls move into 3D view',bool(driver.find_elements(By.CSS_SELECTOR,'#room-game-controls #start-game')))
     el('start-game').click();ready()
     shot('05-game-desktop.png')
-    column=css('#room-column-controls [data-column="0"]').rect
-    canvas=css('#world-layer canvas');rect=canvas.rect
+    column=viewport_rect(css('#room-column-controls [data-column="0"]'))
+    canvas=css('#world-layer canvas');rect=viewport_rect(canvas)
     ActionChains(driver).move_to_element_with_offset(canvas,column['x']+column['width']/2-rect['width']/2,column['y']+150-rect['height']/2).click().perform();ready()
     check('physical board accepts raycast moves',len(driver.find_elements(By.CSS_SELECTOR,'.disc.human'))==1)
     for c in range(1,4):css(f'#room-column-controls [data-column="{c}"]').click();ready()

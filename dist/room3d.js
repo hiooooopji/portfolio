@@ -87,7 +87,7 @@ export function createWorkshop({ dialog, game }) {
     if(name==='game')moveGameIn();else restoreGame();
     updatePhysicalSurfaces();
     const names={overview:'MAKE YOURSELF AT HOME',monitor:'01 / THE MONITOR',notebook:'02 / THE NOTEBOOK',game:'03 / THE GAME TABLE'};
-    $('room-location').textContent=names[name];$('room-back').querySelector('span').textContent=name==='overview'?'Back outside':'Back to the room';
+    $('room-location').textContent=names[name];$('room-back').querySelector('span').textContent=name==='overview'?'Back to portfolio':'Back to the room';
     $('room-intro').hidden=name!=='overview';$('world-labels').hidden=name!=='overview';
     $('room-hint').textContent={overview:'Drag to look around · Click an object to explore',monitor:'A few things I’ve built. Click a tab to explore.',notebook:'Turn a page. Follow a thought. Leave a doodle.',game:'Choose an opponent, then start a round.'}[name];
     dialog.querySelectorAll('.world-dock button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.worldTarget===name)));
